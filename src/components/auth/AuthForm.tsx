@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Hospital, Building2, User, Mail, Lock, Phone, MapPin } from 'lucide-react';
+import { Guitar as Hospital, Building2, User, Mail, Lock, Phone, MapPin } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface AuthFormProps {
