@@ -31,6 +31,7 @@ const AppContent: React.FC = () => {
       return (
         <RoleSelection
           onSelectRole={(role) => setCurrentState(role === 'hospital' ? 'hospital-auth' : 'patient-auth')}
+          onBack={() => setCurrentState('landing')}
         />
       );
     
