@@ -3,12 +3,22 @@ import { Building2, User, Shield, Database } from 'lucide-react';
 
 interface RoleSelectionProps {
   onSelectRole: (role: 'hospital' | 'patient') => void;
+  onBack?: () => void;
 }
 
-export const RoleSelection: React.FC<RoleSelectionProps> = ({ onSelectRole }) => {
+export const RoleSelection: React.FC<RoleSelectionProps> = ({ onSelectRole, onBack }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-200">
       <div className="container mx-auto px-4 py-12">
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="mb-8 flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+          >
+            <span>← Back to Home</span>
+          </button>
+        )}
+        
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-full mb-6">
             <Shield className="h-10 w-10 text-white" />

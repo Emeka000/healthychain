@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { LandingPage } from './components/landing/LandingPage';
 import { RoleSelection } from './components/landing/RoleSelection';
 import { AuthForm } from './components/auth/AuthForm';
 import { HospitalDashboard } from './components/hospital/HospitalDashboard';
 import { PatientDashboard } from './components/patient/PatientDashboard';
 
-type AppState = 'role-selection' | 'hospital-auth' | 'patient-auth' | 'dashboard';
+type AppState = 'landing' | 'role-selection' | 'hospital-auth' | 'patient-auth' | 'dashboard';
 
 const AppContent: React.FC = () => {
-  const [currentState, setCurrentState] = useState<AppState>('role-selection');
+  const [currentState, setCurrentState] = useState<AppState>('landing');
   const { user } = useAuth();
 
   // If user is logged in, show appropriate dashboard
@@ -19,6 +20,13 @@ const AppContent: React.FC = () => {
 
   // Handle different states
   switch (currentState) {
+    case 'landing':
+      return (
+        <LandingPage
+          onGetStarted={() => setCurrentState('role-selection')}
+        />
+      );
+    
     case 'role-selection':
       return (
         <RoleSelection
@@ -44,8 +52,8 @@ const AppContent: React.FC = () => {
     
     default:
       return (
-        <RoleSelection
-          onSelectRole={(role) => setCurrentState(role === 'hospital' ? 'hospital-auth' : 'patient-auth')}
+        <LandingPage
+          onGetStarted={() => setCurrentState('role-selection')}
         />
       );
   }
